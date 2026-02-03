@@ -1,0 +1,54 @@
+<div class="sidebar-container" [class.open]="isOpen">
+  <div class="sidebar-content">
+    
+    <!-- User Info -->
+    <div class="user-section" *ngIf="user">
+      <div class="user-avatar">
+        <mat-icon>account_circle</mat-icon>
+      </div>
+      <div class="user-details">
+        <h3>{{ user.username }}</h3>
+        <p>{{ user.email || 'Utente' }}</p>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="sidebar-nav">
+      <h4 class="nav-header">Menu Principale</h4>
+      
+      <mat-nav-list>
+        <mat-list-item 
+          *ngFor="let item of menuItems"
+          [class.active]="isActive(item.route)"
+          (click)="onNavigationClick(item.route)">
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <div matListItemTitle>{{ item.label }}</div>
+          <div matListItemLine *ngIf="item.badge" class="badge">
+            <mat-chip color="accent">{{ item.badge }}</mat-chip>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+    </nav>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <h4 class="nav-header">Azioni Rapide</h4>
+      
+      <button mat-raised-button 
+              color="primary" 
+              class="action-btn"
+              (click)="onCreateNote()">
+        <mat-icon>add</mat-icon>
+        Nuova Nota
+      </button>
+      
+      <button mat-stroked-button 
+              class="action-btn"
+              (click)="onCreateFolder()">
+        <mat-icon>create_new_folder</mat-icon>
+        Nuova Cartella
+      </button>
+    </div>
+
+  </div>
+</div>

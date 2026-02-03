@@ -1,0 +1,197 @@
+.sidebar-container {
+  width: 280px;
+  min-width: 280px;
+  max-width: 280px;
+  height: calc(100vh - 64px);
+  background-color: white;
+  border-right: 1px solid #e0e0e0;
+  box-shadow: 2px 0 4px rgba(0,0,0,0.1);
+  position: fixed;
+  left: -280px;
+  top: 64px;
+  transition: left 0.3s ease;
+  z-index: 999;
+  box-sizing: border-box;
+
+  &.open {
+    left: 0;
+  }
+
+  @media (min-width: 768px) {
+    position: sticky;
+    left: 0 !important;
+    top: 64px;
+    flex-shrink: 0;
+    height: calc(100vh - 64px);
+
+    &:not(.open) {
+      display: none;
+    }
+  }
+}
+
+.sidebar-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  padding: 20px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  
+  .user-avatar {
+    margin-right: 12px;
+    
+    mat-icon {
+      font-size: 40px;
+      width: 40px;
+      height: 40px;
+      color: #666;
+    }
+  }
+  
+  .user-details {
+    flex: 1;
+    
+    h3 {
+      margin: 0 0 4px 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: #333;
+    }
+    
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
+    }
+  }
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 0;
+}
+
+.nav-header {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #666;
+  margin: 16px 16px 8px 16px;
+  
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+mat-nav-list {
+  padding: 0;
+  
+  mat-list-item {
+    border-radius: 8px;
+    margin: 2px 12px;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: rgba(0,0,0,0.04);
+    }
+    
+    &.active {
+      background-color: rgba(63, 81, 181, 0.1);
+      color: #3f51b5;
+      
+      mat-icon {
+        color: #3f51b5;
+      }
+    }
+    
+    .badge {
+      mat-chip {
+        height: 20px;
+        font-size: 11px;
+        min-height: 20px;
+      }
+    }
+  }
+}
+
+.quick-actions {
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+  
+  .action-btn {
+    width: 100%;
+    margin-bottom: 8px;
+    justify-content: flex-start;
+    
+    mat-icon {
+      margin-right: 8px;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.recent-section {
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #fafafa;
+}
+
+.recent-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  border-radius: 4px;
+  
+  &:hover {
+    background-color: rgba(0,0,0,0.04);
+  }
+  
+  mat-icon {
+    margin-right: 12px;
+    color: #666;
+    font-size: 20px;
+  }
+  
+  .recent-details {
+    flex: 1;
+    
+    span {
+      display: block;
+      font-size: 14px;
+      color: #333;
+    }
+    
+    small {
+      color: #666;
+      font-size: 12px;
+    }
+  }
+}
+
+// Mobile specific styles
+@media (max-width: 767px) {
+  .sidebar-container {
+    width: 100vw;
+    left: -100vw;
+    
+    &.open {
+      left: 0;
+    }
+  }
+}

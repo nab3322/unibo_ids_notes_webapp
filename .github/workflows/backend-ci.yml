@@ -1,0 +1,44 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'backend/**'
+
+jobs:
+  test:
+    name: Test Backend
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Generate JWT Keys
+        working-directory: ./backend/src/main/resources
+        run: |
+          openssl genpkey -algorithm RSA -out privateKey.pem -pkeyopt rsa_keygen_bits:2048
+          openssl rsa -pubout -in privateKey.pem -out publicKey.pem
+
+      - name: Run Tests
+        working-directory: ./backend
+        run: |
+          chmod +x mvnw
+          ./mvnw clean test -Dquarkus.datasource.db-kind=h2 -Dquarkus.datasource.jdbc.url=jdbc:h2:mem:testdb
+
+      - name: Check Coverage
+        working-directory: ./backend
+        run: ./mvnw jacoco:report

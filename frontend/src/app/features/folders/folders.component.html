@@ -1,0 +1,35 @@
+<div class="folders-container p-4">
+  <div class="header flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">Le mie Cartelle</h1>
+    <button mat-raised-button color="primary" (click)="createFolder()">
+      <mat-icon>create_new_folder</mat-icon> Nuova Cartella
+    </button>
+  </div>
+
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4" *ngIf="!isLoading">
+    <mat-card *ngFor="let folder of folders" class="folder-card cursor-pointer hover:shadow-lg transition-shadow" (click)="openFolder(folder)">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="primary">folder</mat-icon>
+        <mat-card-title>{{ folder.name }}</mat-card-title>
+        <mat-card-subtitle>{{ folder.notesCount || 0 }} note</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-actions align="end" (click)="$event.stopPropagation()">
+        <button mat-icon-button (click)="editFolder(folder)" matTooltip="Rinomina">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteFolder(folder)" matTooltip="Elimina">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div *ngIf="!isLoading && folders.length === 0" class="empty-state text-center mt-10 text-gray-500">
+    <mat-icon class="text-6xl mb-2">folder_off</mat-icon>
+    <p>Nessuna cartella trovata.</p>
+    <button mat-button color="primary" (click)="createFolder()">Creane una ora</button>
+  </div>
+</div>

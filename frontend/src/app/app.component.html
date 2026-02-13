@@ -1,0 +1,13 @@
+<app-layout *ngIf="isAuthenticated$ | async">
+  <router-outlet></router-outlet>
+</app-layout>
+
+<div *ngIf="!(isAuthenticated$ | async)">
+  <router-outlet></router-outlet>
+</div>
+
+<app-loading-spinner
+  *ngIf="isLoading$ | async"
+  [overlay]="true"
+  message="Caricamento in corso...">
+</app-loading-spinner>

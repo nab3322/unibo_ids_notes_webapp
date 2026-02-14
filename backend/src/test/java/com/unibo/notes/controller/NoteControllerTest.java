@@ -201,7 +201,7 @@ class NoteControllerTest {
                 .post("/api/notes/" + noteId + "/copy")
                 .then()
                 .statusCode(201)
-                .body("title", containsString("Copy"))
+                .body("title", containsString("Copia"))
                 .body("content", equalTo("Original content"))
                 .extract().body().asString();
 

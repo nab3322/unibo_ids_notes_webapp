@@ -28,17 +28,26 @@ jobs:
           cache: 'maven'
 
       - name: Generate JWT Keys
-        working-directory: ./backend/src/main/resources
         run: |
+          cd backend/src/main/resources
           openssl genpkey -algorithm RSA -out privateKey.pem -pkeyopt rsa_keygen_bits:2048
           openssl rsa -pubout -in privateKey.pem -out publicKey.pem
+          echo "JWT keys generated"
+          ls -la *.pem
 
       - name: Run Tests
         working-directory: ./backend
         run: |
           chmod +x mvnw
-          ./mvnw clean test -Dquarkus.datasource.db-kind=h2 -Dquarkus.datasource.jdbc.url=jdbc:h2:mem:testdb
+          ./mvnw clean test
 
       - name: Check Coverage
         working-directory: ./backend
         run: ./mvnw jacoco:report
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: backend/target/site/jacoco/

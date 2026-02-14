@@ -19,7 +19,7 @@ import jakarta.ws.rs.core.SecurityContext;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Path("/permissions")
+@Path("/api/permissions")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Authenticated

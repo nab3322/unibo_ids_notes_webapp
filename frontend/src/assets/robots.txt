@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap (opzionale)
+# Sitemap: https://your-domain.com/sitemap.xml
+
+# Disallow admin areas in production
+# Disallow: /admin/
+# Disallow: /api/

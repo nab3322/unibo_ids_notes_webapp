@@ -1,0 +1,39 @@
+{
+  "name": "Notes Sharing App",
+  "short_name": "NotesApp",
+  "description": "Applicazione per condividere note universitarie",
+  "theme_color": "#1976d2",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "orientation": "portrait",
+  "lang": "it",
+  "icons": [
+    {
+      "src": "icons/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nuova Nota",
+      "short_name": "Nuova",
+      "description": "Crea una nuova nota",
+      "url": "/notes/new",
+      "icons": [
+        {
+          "src": "icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

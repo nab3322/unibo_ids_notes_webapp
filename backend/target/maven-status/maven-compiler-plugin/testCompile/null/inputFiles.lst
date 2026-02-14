@@ -1,0 +1,6 @@
+/app/src/test/java/com/unibo/notes/controller/NoteControllerTest.java
+/app/src/test/java/com/unibo/notes/service/UserServiceTest.java
+/app/src/test/java/com/unibo/notes/controller/AuthControllerTest.java
+/app/src/test/java/com/unibo/notes/service/PermissionServiceTest.java
+/app/src/test/java/com/unibo/notes/service/FolderServiceTest.java
+/app/src/test/java/com/unibo/notes/service/NoteServiceTest.java

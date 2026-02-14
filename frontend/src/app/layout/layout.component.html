@@ -1,0 +1,25 @@
+<div class="layout-container">
+
+  <app-header
+    [user]="currentUser$ | async"
+    [sidebarOpen]="sidebarOpen"
+    (menuToggle)="onSidebarToggle()"
+    (logout)="onLogout()">
+  </app-header>
+
+  <div class="layout-main">
+
+    <app-sidebar
+      [isOpen]="sidebarOpen"
+      [user]="currentUser$ | async"
+      (close)="sidebarOpen = false"
+      (createNote)="onCreateNote()"
+      (createFolder)="onCreateFolder()">
+    </app-sidebar>
+
+    <main class="layout-content">
+      <ng-content></ng-content>
+    </main>
+
+  </div>
+</div>

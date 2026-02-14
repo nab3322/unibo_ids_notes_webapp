@@ -1,0 +1,122 @@
+<div class="settings-container">
+  <div class="settings-header">
+    <h1>Impostazioni</h1>
+    <p>Gestisci il tuo profilo e le impostazioni di sicurezza</p>
+  </div>
+
+  <div class="settings-grid">
+
+    <!-- Informazioni Personali (Solo lettura) -->
+    <mat-card class="settings-card">
+      <mat-card-header>
+        <div mat-card-avatar class="header-icon primary-bg">
+          <mat-icon>person</mat-icon>
+        </div>
+        <mat-card-title>Informazioni Personali</mat-card-title>
+        <mat-card-subtitle>I tuoi dati account</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="info-list">
+          <div class="info-item">
+            <mat-icon>badge</mat-icon>
+            <div class="info-content">
+              <label>Nome</label>
+              <span>{{ profileForm.get('name')?.value || '-' }}</span>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="info-item">
+            <mat-icon>email</mat-icon>
+            <div class="info-content">
+              <label>Email</label>
+              <span>{{ profileForm.get('email')?.value || '-' }}</span>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="info-item">
+            <mat-icon>account_circle</mat-icon>
+            <div class="info-content">
+              <label>Username</label>
+              <span>{{ profileForm.get('username')?.value || '-' }}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Sicurezza -->
+    <mat-card class="settings-card">
+      <mat-card-header>
+        <div mat-card-avatar class="header-icon warn-bg">
+          <mat-icon>security</mat-icon>
+        </div>
+        <mat-card-title>Sicurezza</mat-card-title>
+        <mat-card-subtitle>Modifica la tua password</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="passwordForm">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password Attuale</mat-label>
+            <input matInput type="password" formControlName="currentPassword">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nuova Password</mat-label>
+            <input matInput type="password" formControlName="newPassword">
+            <mat-error *ngIf="passwordForm.get('newPassword')?.hasError('minlength')">
+              Minimo 6 caratteri
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Conferma Nuova Password</mat-label>
+            <input matInput type="password" formControlName="confirmPassword">
+            <mat-error *ngIf="passwordForm.hasError('mismatch')">
+              Le password non coincidono
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button color="accent"
+                [disabled]="passwordForm.invalid || isLoading"
+                (click)="changePassword()">
+          Cambia Password
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Zona Pericolo -->
+    <mat-card class="settings-card danger-zone">
+      <mat-card-header>
+        <div mat-card-avatar class="header-icon danger-bg">
+          <mat-icon>warning</mat-icon>
+        </div>
+        <mat-card-title>Zona Pericolo</mat-card-title>
+        <mat-card-subtitle>Azioni irreversibili</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>Qui puoi scaricare una copia dei tuoi dati o eliminare definitivamente il tuo account.</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-stroked-button (click)="exportData()">
+          <mat-icon>download</mat-icon> Esporta Dati
+        </button>
+        <span class="spacer"></span>
+        <button mat-flat-button color="warn" (click)="deleteAccount()">
+          <mat-icon>delete_forever</mat-icon> Elimina Account
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+</div>

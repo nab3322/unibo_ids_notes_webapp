@@ -1,0 +1,153 @@
+.search-container {
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .search-header h1 {
+      margin: 0 0 30px 0;
+      color: #333;
+    }
+
+    .search-form-card {
+      margin-bottom: 30px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .search-field {
+      flex: 1;
+    }
+
+    .search-btn {
+      height: 56px;
+    }
+
+    .filters-section {
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+
+    .filters-section h3 {
+      margin: 0 0 16px 0;
+      color: #666;
+      font-size: 1rem;
+    }
+
+    .filter-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .filter-checkboxes {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+
+    .clear-filters-btn {
+      margin-top: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .filter-row {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-checkboxes {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .results-header h2 {
+      margin: 0;
+      color: #333;
+    }
+
+    .search-stats {
+      color: #666;
+      font-size: 0.875rem;
+    }
+
+    .results-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .result-card {
+      transition: transform 0.2s ease;
+    }
+
+    .result-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .shared-icon {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .note-icon {
+      background-color: #1976d2;
+      color: white;
+    }
+
+    .result-snippet {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .result-tags {
+      margin-top: 12px;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: #666;
+    }
+
+    .no-results-icon {
+      font-size: 64px;
+      width: 64px;
+      height: 64px;
+      color: #ccc;
+      margin-bottom: 16px;
+    }
+
+    .no-results h2 {
+      margin: 16px 0 8px 0;
+      color: #999;
+    }
+
+    .recent-searches {
+      margin-top: 30px;
+    }
+
+    .recent-searches h2 {
+      margin-bottom: 16px;
+      color: #333;
+      font-size: 1.2rem;
+    }
+
+    .highlight {
+      background-color: #fff59d;
+      font-weight: bold;
+    }

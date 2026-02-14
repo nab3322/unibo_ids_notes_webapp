@@ -54,8 +54,8 @@ Notes WebApp è un'applicazione web full-stack per la creazione, gestione e cond
 
 - Nabil Bouziane - Product Owner, Scrum Master, Developer
 - Mattia Veroni - Scrum Master, Developer Lead
-- Simone - Product Owner, Developer
-- Cristina - Scrum Master, Developer Lead
+- Simone Amadio - Product Owner, Developer
+- Cristina Zungri - Scrum Master, Developer Lead
 
 **Nota**: I ruoli sono stati ruotati tra gli sprint seguendo la metodologia Scrum.
 

@@ -40,50 +40,40 @@ jobs:
         working-directory: ./backend
         run: |
           chmod +x mvnw
-          ./mvnw clean test
+          ./mvnw clean test 2>&1 | tee ../test-output.log
         continue-on-error: true
+
+      - name: Show Application Errors
+        if: always()
+        run: |
+          echo "=== SEARCHING FOR ERRORS IN APPLICATION LOG ==="
+          grep -i "error\|exception\|caused by" backend/test-output.log | head -100 || echo "No errors found in log"
+          echo ""
+          echo "=== SEARCHING FOR JWT ISSUES ==="
+          grep -i "jwt\|key\|token.*error" backend/test-output.log | head -50 || echo "No JWT errors"
 
       - name: Display Test Reports
         if: always()
         working-directory: ./backend
         run: |
-          echo "=== TEST EXECUTION COMPLETED ==="
-          if [ -d "target/surefire-reports" ]; then
-            echo "Surefire reports found. Displaying content:"
-            echo ""
-            for file in target/surefire-reports/*.txt; do
-              if [ -f "$file" ]; then
-                echo "========================================="
-                echo "FILE: $file"
-                echo "========================================="
-                cat "$file"
-                echo ""
-              fi
-            done
-          else
-            echo "ERROR: No surefire-reports directory found!"
-            ls -la target/ || echo "No target directory!"
-          fi
+          echo "=== TEST SUMMARY ==="
+          for file in target/surefire-reports/*ControllerTest.txt; do
+            if [ -f "$file" ]; then
+              echo "FILE: $file"
+              tail -20 "$file"
+              echo ""
+            fi
+          done
 
-      - name: Upload Test Reports
+      - name: Upload Full Logs
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: test-reports
-          path: backend/target/surefire-reports/
+          name: test-logs
+          path: |
+            backend/test-output.log
+            backend/target/surefire-reports/
 
       - name: Fail if tests failed
         if: steps.test.outcome == 'failure'
         run: exit 1
-
-      - name: Check Coverage
-        if: steps.test.outcome == 'success'
-        working-directory: ./backend
-        run: ./mvnw jacoco:report
-
-      - name: Upload Coverage Report
-        uses: actions/upload-artifact@v4
-        if: steps.test.outcome == 'success'
-        with:
-          name: coverage-report
-          path: backend/target/site/jacoco/

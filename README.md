@@ -324,7 +324,6 @@ Copyright © 2024 - Tutti i diritti riservati.
 Per domande o chiarimenti sul progetto:
 
 - Repository: https://github.com/nab3322/unibo_ids_notes_webapp
-- Email: [inserire email del gruppo]
 
 ---
 
